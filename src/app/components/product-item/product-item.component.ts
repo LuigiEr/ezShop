@@ -13,7 +13,8 @@ export class ProductItemComponent implements OnChanges {
   reviewsCount: number = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.reviewsCount = this.product.data?.reviews?.length;
+     var count = this.product.data?.reviews?.length;
+     this.reviewsCount = count == null ? 0 : count;
   }
 
   deleteProduct(product: Product): void {

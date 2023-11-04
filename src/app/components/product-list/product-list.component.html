@@ -3,13 +3,13 @@
   <div class="row mt-3">
     <div class="d-flex justify-content-center">
       <h2 class="mt-1 all-product">All Products</h2>
-      <button class="ml-4" mat-mini-fab>
-        <mat-icon (click)="addProduct()">add</mat-icon>
+      <button class="ml-4" (click)="addProduct()" mat-mini-fab>
+        <mat-icon>add</mat-icon>
       </button>
     </div>
   </div>
 
-  <div class="row mt-1 ">
+  <div class="row mt-1 d-flex align-items-center w-100">
 
     <div class="col d-flex justify-content-start">
       Number of products: {{ products.length }}

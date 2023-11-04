@@ -14,21 +14,26 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import  {MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ChartViewComponent } from './components/chart-view/chart-view.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ProductItemComponent,
-    ChartViewComponent
+    ChartViewComponent,
+    AddProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,10 @@ import { ToastrModule } from 'ngx-toastr';
     MatProgressSpinnerModule,
     ToastrModule.forRoot(), // ToastrModule added
     MatButtonToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
