@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+  <div class="row mt-3">
+    <div class="d-flex justify-content-center">
+      <h2 class="mt-1 all-product">All Products</h2>
+      <button class="ml-4" mat-mini-fab>
+        <mat-icon (click)="addProduct()">add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="row mt-1 ">
+
+    <div class="col d-flex justify-content-start">
+      Number of products: {{ products.length }}
+    </div>
+
+    <div class="col d-flex justify-content-end">
+      <mat-button-toggle-group #group="matButtonToggleGroup" value="layout_view">
+        <mat-button-toggle color="primary" value="layout_view" aria-label="layout view">
+          <mat-icon>view_stream</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle color="primary" value="grid_view" aria-label="grid view">
+          <mat-icon>view_module</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div class="row mt-4 w-100">
+
+    <div class="mt-4 d-flex justify-content-center" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="w-100" *ngFor="let product of products">
+      <app-product-item [product]="product"></app-product-item>
+    </div>
+
+  </div>
+</div>

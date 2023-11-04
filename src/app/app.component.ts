@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'ez-shop';
+  shopName = 'ezShop';
+  events: string[] = [];
+  opened: boolean = false;
+
+  toggleMenu(){
+    this.opened = !this.opened;
+  }
 }

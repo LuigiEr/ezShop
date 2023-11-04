@@ -1,0 +1,56 @@
+<mat-card class="mt-2 w-100">
+
+  <mat-card-header>
+
+    <mat-card-title>{{ product.data.title }}</mat-card-title>
+
+    <mat-card-subtitle class="mt-3"> {{ product.data.description }} </mat-card-subtitle>
+
+
+
+    <!-- <div class="d-flex justify-content-between">
+
+
+      <button mat-mini-fab color="warn">
+        <mat-icon class="add-course-btn" (click)="deleteProduct(product)">delete</mat-icon>
+      </button>
+    </div> -->
+
+  </mat-card-header>
+
+  <mat-card-content class="mt-3 w-50">
+
+    <div>Category: {{ product.data.category }}</div>
+    <div>Price: {{ product.data.price }} </div>
+    <div>Employee: {{ "Aldo" }} </div>
+
+  </mat-card-content>
+
+  <mat-card-actions class="mt-3">
+
+    <mat-accordion class="w-75">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Show Reviews ({{ reviewsCount }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <div *ngFor="let review of product.data.reviews">
+            <div class="mt-1 w-100"> <p>{{ review }}</p></div>
+            <mat-divider></mat-divider>
+          </div>
+
+        </mat-list>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button mat-mini-fab color="warn">
+      <mat-icon class="add-course-btn" (click)="deleteProduct(product)">delete</mat-icon>
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>
