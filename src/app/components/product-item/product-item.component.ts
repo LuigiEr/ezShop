@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct, IProductData } from 'src/app/models/product.interface';
 
 @Component({
@@ -9,6 +9,8 @@ import { IProduct, IProductData } from 'src/app/models/product.interface';
 export class ProductItemComponent implements OnChanges {
 
   @Input() product!: IProduct;
+  @Output() deleteProductEvent = new EventEmitter<IProduct>();
+
   panelOpenState = false;
   reviewsCount: number = 0;
 
@@ -18,7 +20,8 @@ export class ProductItemComponent implements OnChanges {
   }
 
   deleteProduct(product: IProduct): void {
-
+    console.log(product);
+    this.deleteProductEvent.emit(product);
   }
 
 }

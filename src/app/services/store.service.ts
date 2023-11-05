@@ -29,8 +29,6 @@ export class StoreService {
   }
 
   saveProductData(productData: IProductData): Observable<string> {
-    console.log("saveProductData", productData);
-
     var HTTPOptions = {
       headers: new HttpHeaders({
         'Accept': 'text/html, application/xhtml+xml, */*'
@@ -45,6 +43,14 @@ export class StoreService {
       }),
       catchError(error => {
         throw this.handleError(error, 'Error while retrieving the products');
+      }));
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.apiUrlStore}/products/${id}`).pipe(
+      tap(() =>  this.toastr.success(`Product deleted`)),
+      catchError(error => {
+        throw this.handleError(error, 'Error while deleting the product');
       }));
   }
 

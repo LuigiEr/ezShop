@@ -42,10 +42,20 @@ export class ProductListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(idCreated => {
-      console.log('The dialog was closed', idCreated);
-      if(idCreated && idCreated.trim !== '') {
+      if (idCreated && idCreated.trim !== '') {
         this.getAllProducts();
       }
     });
+  }
+
+  deleteProduct(product: IProduct): void {
+    this.storeService.deleteProduct(product.id).subscribe({
+      complete: () => {
+        this.getAllProducts();
+      },
+      error: () => {
+        this.isLoading = false;
+      }
+    })
   }
 }

@@ -35,7 +35,7 @@
 
     <ng-container *ngIf="!isLoading">
       <div class="w-100" *ngFor="let product of products">
-        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product" (deleteProductEvent)="deleteProduct($event)"></app-product-item>
       </div>
     </ng-container>
   </div>
