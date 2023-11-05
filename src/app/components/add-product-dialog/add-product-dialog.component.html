@@ -1,1 +1,106 @@
-<h2 mat-dialog-title>dialog title</h2>
+<h2 mat-dialog-title>Add a new product</h2>
+
+<mat-dialog-content>
+
+  <div class="mt-4 d-flex justify-content-center" *ngIf="isLoading; else loadForm">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #loadForm>
+    <form [formGroup]="productDataForm">
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input type="text" matInput formControlName="title" placeholder="Ex. Title123" required>
+              <mat-error *ngIf="productDataForm.controls['title'].hasError('required')">
+                Title is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <input type="text" matInput formControlName="category" placeholder="Ex. Category123" required>
+              <mat-error *ngIf="productDataForm.controls['category'].hasError('required')">
+                Category is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input type="number" matInput formControlName="price" placeholder="15" required>
+              <mat-error *ngIf="productDataForm.controls['price'].hasError('required')">
+                Price is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row mt-1">
+
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Employee</mat-label>
+              <input type="text" matInput formControlName="employee" placeholder="Ex. Employee123" required>
+              <mat-error *ngIf="productDataForm.controls['employee']?.hasError('required')">
+                Employee is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-8">
+            <mat-form-field class="w-75">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" placeholder="Ex. any description..."></textarea>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Review</mat-label>
+              <textarea matInput [formControl]="singleReviewControl" placeholder="Ex. Review123..."></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="col-8">
+            <div class="mt-2"><button mat-raised-button (click)="addReview()">Add Review</button></div>
+            <div class="mt-2"><button mat-raised-button (click)="removeReview()">Remove Review</button></div>
+          </div>
+
+        </div>
+
+        <div class="row mt-1">
+          <div class="col-4">
+            Reviews:
+            <div *ngIf="productDataForm.controls.reviews?.value?.length === 0">No reviews yet</div>
+            <div class="mt-1" *ngFor="let review of productDataForm.controls.reviews?.value">
+              <mat-divider></mat-divider>
+              <div class="mt-1 w-100"> <p>{{ review }}</p></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </ng-template>
+
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="!isLoading" align="end" class="action-buttons">
+  <button mat-raised-button color="primary" [disabled]="isLoading && !productDataForm.valid" (click)="saveForm()">Save</button>
+  <button mat-raised-button (click)="onDialogClose()">Close</button>
+</mat-dialog-actions>

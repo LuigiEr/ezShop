@@ -1,5 +1,5 @@
 import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
-import { Product, ProductData } from 'src/app/models/product.interface';
+import { IProduct, IProductData } from 'src/app/models/product.interface';
 
 @Component({
   selector: 'app-product-item',
@@ -8,7 +8,7 @@ import { Product, ProductData } from 'src/app/models/product.interface';
 })
 export class ProductItemComponent implements OnChanges {
 
-  @Input() product!: Product;
+  @Input() product!: IProduct;
   panelOpenState = false;
   reviewsCount: number = 0;
 
@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnChanges {
      this.reviewsCount = count == null ? 0 : count;
   }
 
-  deleteProduct(product: Product): void {
+  deleteProduct(product: IProduct): void {
 
   }
 
