@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { IProduct, IProductData } from '../models/product.interface';
 import { ToastrService } from 'ngx-toastr';
+import { IStore } from '../models/store.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,21 @@ export class StoreService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
-  getProducts(): Observable<IProduct[]> {
+  getStore(): Observable<IStore> {
+    return this.http.get<IStore>(`${this.apiUrlStore}`).pipe(
+      catchError(error => {
+        throw this.handleError(error, 'Error while retrieving the stores');
+      }));
+  }
 
+  getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`${this.apiUrlStore}/products`).pipe(
       map((response: IProduct[]) => {
         return response
       }),
       catchError(error => {
         throw this.handleError(error, 'Error while retrieving the products');
-      })
-    )
+      }));
   }
 
   saveProductData(productData: IProductData): Observable<string> {
@@ -48,7 +54,7 @@ export class StoreService {
 
   deleteProduct(id: string) {
     return this.http.delete(`${this.apiUrlStore}/products/${id}`).pipe(
-      tap(() =>  this.toastr.success(`Product deleted`)),
+      tap(() => this.toastr.success(`Product deleted`)),
       catchError(error => {
         throw this.handleError(error, 'Error while deleting the product');
       }));

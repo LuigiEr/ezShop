@@ -14,10 +14,10 @@
 
     <div class="row d-flex align-items-center">
 
-      <div class="col">
+      <div class="col-10">
 
         <mat-accordion>
-          <mat-expansion-panel class="mt-4 w-75" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel class="mt-4 w-100" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Show Reviews ({{ reviewsCount }})
@@ -34,7 +34,7 @@
         </mat-accordion>
       </div>
 
-      <div class="col d-flex justify-content-end mt-4">
+      <div class="col-2 d-flex justify-content-end mt-4">
         <button mat-mini-fab color="warn" class="mr-4" (click)="deleteProduct(product)">
           <mat-icon>delete</mat-icon>
         </button>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IProductDataForm } from 'src/app/models/product-data.form';
+import { IProductDataForm } from 'src/app/models/product-data.interface';
 import { IProductData } from 'src/app/models/product.interface';
 import { StoreService } from 'src/app/services/store.service';
 
@@ -23,10 +23,10 @@ export class AddProductDialogComponent {
 
     this.productDataForm = new FormGroup<IProductDataForm>({
       title: new FormControl('', { nonNullable: true }),
-      description: new FormControl('', { nonNullable: false }),
       category: new FormControl('', { nonNullable: true }),
       price: new FormControl(0, { nonNullable: true }),
-      employee: new FormControl('', { nonNullable: true }),
+      employee: new FormControl('', { nonNullable: false }),
+      description: new FormControl('', { nonNullable: false }),
       reviews: new FormControl([], { nonNullable: false }),
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/product.interface';
 import { StoreService } from 'src/app/services/store.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component';
+import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
 
 @Component({
   selector: 'app-product-list',

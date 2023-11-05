@@ -23,10 +23,11 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ChartViewComponent } from './components/chart-view/chart-view.component';
 import { ToastrModule } from 'ngx-toastr';
-import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog.component';
+import { AddProductDialogComponent } from './components/product-list/add-product-dialog/add-product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConfirmDialogComponent } from './components/product-item/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ProductListComponent,
     ProductItemComponent,
     ChartViewComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

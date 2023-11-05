@@ -16,8 +16,8 @@
     </div>
 
     <div class="col d-flex justify-content-end">
-      <mat-button-toggle-group #group="matButtonToggleGroup" value="layout_view">
-        <mat-button-toggle color="primary" value="layout_view" aria-label="layout view">
+      <mat-button-toggle-group #group="matButtonToggleGroup" value="list_view">
+        <mat-button-toggle color="primary" value="list_view" aria-label="list view">
           <mat-icon>view_stream</mat-icon>
         </mat-button-toggle>
         <mat-button-toggle color="primary" value="grid_view" aria-label="grid view">
@@ -34,7 +34,7 @@
     </div>
 
     <ng-container *ngIf="!isLoading">
-      <div class="w-100" *ngFor="let product of products">
+      <div [ngClass]="group.value === 'list_view' ? 'card-item-list' : 'card-item-grid'" *ngFor="let product of products">
         <app-product-item [product]="product" (deleteProductEvent)="deleteProduct($event)"></app-product-item>
       </div>
     </ng-container>
