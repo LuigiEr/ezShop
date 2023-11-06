@@ -1,13 +1,9 @@
-@import "./src/styles/global/base/_color";
+@import "../../../../styles/global/color.scss";
 
 footer {
-  padding-left: 20px;
-  padding-right: 20px;
   position: fixed;
   bottom: 0;
   width: 100%;
   background-color: $grey-shade-light;
-  color: black;
   text-align: center;
-  margin: 0px;
 }

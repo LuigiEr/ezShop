@@ -11,7 +11,7 @@ import { IStore } from './models/store.interface';
 export class AppComponent implements OnInit {
   events: string[] = [];
   opened: boolean = false;
-  storeName!: string;
+  shopeName!: string;
 
   constructor(private readonly storeService: StoreService) { }
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   private getStore(): void {
     this.storeService.getStore().subscribe({
       next: (store: IStore) => {
-        this.storeName = `Shop Name: ${store.name}`;
+        this.shopeName = `Shop Name: ${store.name}`;
       }
     })
   }
