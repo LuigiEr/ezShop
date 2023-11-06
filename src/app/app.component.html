@@ -5,8 +5,8 @@
     <mat-toolbar-row (click)="toggleMenu()">
       <mat-icon (click)="toggleMenu()">menu</mat-icon>
     </mat-toolbar-row>
-    <mat-toolbar>
 
+    <mat-toolbar>
       <mat-toolbar-row (click)="toggleMenu()" routerLink="/product-list">
         <mat-icon>assignment</mat-icon>
         <div class="menu-item-distance">All Products</div>
@@ -16,11 +16,11 @@
         <mat-icon>pie_chart</mat-icon>
         <div class="menu-item-distance">Chart View</div>
       </mat-toolbar-row>
-
     </mat-toolbar>
+
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="border-color">
     <mat-toolbar color="primary">
       <mat-icon (click)="toggleMenu()">menu</mat-icon>
       <div class="d-flex justify-content-center w-100">
@@ -28,10 +28,16 @@
       </div>
     </mat-toolbar>
 
+
     <router-outlet></router-outlet>
+
+    <app-footer [storeName]="storeName"></app-footer>
+
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+
+
 
 
 

@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './components/product-item/confirm-dialog/confirm-dialog.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ConfirmDialogComponent } from './components/product-item/confirm-dialog
     ProductItemComponent,
     ChartViewComponent,
     AddProductDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
