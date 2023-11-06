@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './components/product-item/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
