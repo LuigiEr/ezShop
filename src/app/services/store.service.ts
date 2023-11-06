@@ -5,6 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { IProduct, IProductData } from '../models/product.interface';
 import { ToastrService } from 'ngx-toastr';
 import { IStore } from '../models/store.interface';
+import { IStatsCategories } from '../models/stats-categories.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,13 @@ export class StoreService {
     return this.http.get<IStore>(`${this.apiUrlStore}`).pipe(
       catchError(error => {
         throw this.handleError(error, 'Error while retrieving the stores');
+      }));
+  }
+
+  getStatsCategories() {
+    return this.http.get<IStatsCategories[]>(`${this.apiUrlStore}/stats/categories`).pipe(
+      catchError(error => {
+        throw this.handleError(error, 'Error while retrieving the stats categories');
       }));
   }
 

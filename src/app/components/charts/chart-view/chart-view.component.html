@@ -1,1 +1,13 @@
-<p>chart-view works!</p>
+
+<div class="mt-4 d-flex justify-content-center" *ngIf="isLoading; else loadChart">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #loadChart>
+  <div class="chart-container mt-4 d-flex justify-content-center">
+    <app-polar-area-chart [statsCategories]="statsCategories"></app-polar-area-chart>
+  </div>
+</ng-template>
+
+
+

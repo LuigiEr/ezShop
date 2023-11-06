@@ -36,7 +36,6 @@ import { NgChartsModule } from 'ng2-charts';
     AppComponent,
     ProductListComponent,
     ProductItemComponent,
- //   ChartViewComponent,
     AddProductDialogComponent,
     ConfirmDialogComponent,
     FooterComponent

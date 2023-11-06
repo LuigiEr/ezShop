@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IProduct, IProductData } from 'src/app/models/product.interface';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -19,13 +19,12 @@ export class ProductItemComponent implements OnChanges {
   panelOpenState = false;
   reviewsCount: number = 0;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     var count = this.product.data?.reviews?.length;
     this.reviewsCount = count == null ? 0 : count;
   }
 
   deleteProduct(product: IProduct): void {
-
     const dialogData: IDialogData = {
       title: 'Are you sure?',
       confirmButtonText: 'Confirm',
