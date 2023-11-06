@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
-import { ChartViewComponent } from './components/chart-view/chart-view.component';
+//import { ChartViewComponent } from './components/charts/chart-view/chart-view.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AddProductDialogComponent } from './components/product-list/add-product-dialog/add-product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -35,7 +35,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     AppComponent,
     ProductListComponent,
     ProductItemComponent,
-    ChartViewComponent,
+ //   ChartViewComponent,
     AddProductDialogComponent,
     ConfirmDialogComponent,
     FooterComponent

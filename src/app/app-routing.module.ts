@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { ChartViewComponent } from './components/chart-view/chart-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
   { path: 'product-list', component: ProductListComponent },
-  { path: 'chart-view', component: ChartViewComponent},
+  { path: 'chart-view', loadChildren: () => import('./components/charts/charts.module').then(m => m.ChartsModule) },
   { path: '**', redirectTo: 'product-list' }
 ];
 
