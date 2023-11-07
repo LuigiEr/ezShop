@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './components/product-list/product-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
-  { path: 'product-list', component: ProductListComponent },
+  { path: 'product-list', loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule) },
   { path: 'chart-view', loadChildren: () => import('./components/charts/charts.module').then(m => m.ChartsModule) },
   { path: '**', redirectTo: 'product-list' }
 ];

@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IProduct, IProductData } from 'src/app/models/product.interface';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { IDialogData } from 'src/app/models/dialog-data.interface';
 
 @Component({
