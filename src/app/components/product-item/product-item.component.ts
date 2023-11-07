@@ -12,6 +12,7 @@ import { IDialogData } from 'src/app/models/dialog-data.interface';
 export class ProductItemComponent implements OnChanges {
 
   @Input() product!: IProduct;
+  @Input() layoutViewType: string = '';
   @Output() deleteProductEvent = new EventEmitter<IProduct>();
 
   constructor(public dialog: MatDialog) { }

@@ -1,0 +1,43 @@
+@import "../../../styles/global/color.scss";
+
+.panel-layout-view {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: auto;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2), 0 3px 5px 2px rgba(0, 0, 0, 0.06);
+}
+
+.grid-layout-view {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 366px;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2), 0 3px 5px 2px rgba(0, 0, 0, 0.06);
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.title-color {
+  color: $primary-color;
+}
+
+.field-style {
+  font-weight: 500;
+}
+
+.field-space {
+  padding-bottom: 0.2rem;
+}
+
+.no-desc-style {
+  font-style: italic;
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IProductDataForm } from 'src/app/models/product-data.interface';
 import { IProductData } from 'src/app/models/product.interface';
@@ -15,18 +15,21 @@ export class AddProductDialogComponent {
   productDataForm;
   singleReviewControl;
   isLoading!: boolean;
+  normalFieldMaxLength: number = 35;
+  longFieldMaxLength: number = 250;
+  minPriceValue: number = 0;
 
   constructor(private dialogRef: MatDialogRef<AddProductDialogComponent>, private readonly storeService: StoreService) {
     this.isLoading = false;
 
-    this.singleReviewControl = new FormControl<string>('', { nonNullable: true });
+    this.singleReviewControl = new FormControl<string>('', { nonNullable: true, validators: Validators.maxLength(this.longFieldMaxLength) });
 
     this.productDataForm = new FormGroup<IProductDataForm>({
-      title: new FormControl('', { nonNullable: true }),
-      category: new FormControl('', { nonNullable: true }),
-      price: new FormControl(0, { nonNullable: true }),
-      employee: new FormControl('', { nonNullable: false }),
-      description: new FormControl('', { nonNullable: false }),
+      title: new FormControl('', { nonNullable: true, validators: Validators.maxLength(this.normalFieldMaxLength) }),
+      category: new FormControl('', { nonNullable: true, validators: Validators.maxLength(this.normalFieldMaxLength) }),
+      price: new FormControl(0, { nonNullable: true, validators: Validators.min(this.minPriceValue) }),
+      employee: new FormControl('', { nonNullable: false, validators: Validators.maxLength(this.normalFieldMaxLength) }),
+      description: new FormControl('', { nonNullable: false, validators: Validators.maxLength(this.longFieldMaxLength) }),
       reviews: new FormControl([], { nonNullable: false }),
     });
   }
@@ -66,7 +69,6 @@ export class AddProductDialogComponent {
     this.isLoading = true;
     this.storeService.saveProductData(data).subscribe({
         next: (idCreated: string) => {
-          console.log("idCreated", idCreated)
           this.isLoading = false;
           this.dialogRef.close(idCreated);
         },

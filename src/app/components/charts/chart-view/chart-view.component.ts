@@ -19,6 +19,7 @@ export class ChartViewComponent implements OnInit {
   }
 
   private getStatusCategories(): void {
+    this.isLoading = true;
     this.storeService.getStatsCategories().subscribe({
       next: (statsCategories: IStatsCategories[]) => {
         this.statsCategories = statsCategories;
@@ -29,6 +30,6 @@ export class ChartViewComponent implements OnInit {
       error: () => {
         this.isLoading = false;
       }
-    })
+    });
   }
 }

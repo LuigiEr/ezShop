@@ -1,21 +1,36 @@
-<mat-card class="mt-2 w-100">
+<mat-card [ngClass]="layoutViewType === 'panel_layout' ? 'panel-layout-view' : 'grid-layout-view'">
 
   <mat-card-header>
-    <mat-card-title>{{ product.data.title }}</mat-card-title>
-    <mat-card-subtitle class="mt-3"> {{ product.data.description }} </mat-card-subtitle>
+    <mat-card-title class="title-color">{{ product.data.title }}</mat-card-title>
+    <mat-card-subtitle class="mt-3">
+      <div *ngIf="product.data.description && product.data.description !== ''; else noDesc">
+        {{ product.data.description }}
+      </div>
+      <ng-template #noDesc>
+        <span class="no-desc-style">No Description</span>
+      </ng-template>
+
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content class="mt-3 w-100">
 
-    <div>Id: {{ product.id }}</div>
-    <div>Category: {{ product.data.category }}</div>
-    <div>Price: {{ product.data.price }} </div>
-    <div>Employee: {{ product.data.employee }} </div>
+    <div class="field-space">
+      <span class="field-style">Id:</span> {{ product.id }}
+    </div>
+    <div class="field-space">
+      <span class="field-style">Category:</span> {{ product.data.category }}
+    </div>
+    <div class="field-space">
+      <span class="field-style">Price:</span> {{ product.data.price }}
+    </div>
+    <div class="field-space">
+      <span class="field-style">Employee:</span> {{ product.data.employee }}
+    </div>
 
-    <div class="row d-flex align-items-center">
+    <div class="row d-flex align-items-center test123">
 
       <div class="col-10">
-
         <mat-accordion>
           <mat-expansion-panel class="mt-4 w-100" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>

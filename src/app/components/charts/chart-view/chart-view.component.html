@@ -1,6 +1,6 @@
 
-<div class="mt-4 d-flex justify-content-center" *ngIf="isLoading; else loadChart">
-  <mat-spinner></mat-spinner>
+<div class="w-100 h-80 spinner-distance d-flex justify-content-center" *ngIf="isLoading; else loadChart">
+  <mat-spinner [diameter]="120"></mat-spinner>
 </div>
 
 <ng-template #loadChart>
