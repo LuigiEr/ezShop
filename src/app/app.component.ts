@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { StoreService } from './services/store.service';
-import { IStore } from './models/store.interface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +6,6 @@ import { IStore } from './models/store.interface';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
-  events: string[] = [];
-  opened: boolean = false;
-  shopeName!: string;
+export class AppComponent {
 
-  constructor(private readonly storeService: StoreService) { }
-
-  ngOnInit(): void {
-    this.getStore();
-  }
-
-  toggleMenu() {
-    this.opened = !this.opened;
-  }
-
-  private getStore(): void {
-    this.storeService.getStore().subscribe({
-      next: (store: IStore) => {
-        this.shopeName = `Shop Name: ${store.name}`;
-      }
-    })
-  }
 }

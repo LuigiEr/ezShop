@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')"
+    color="primary">
+
+    <mat-toolbar-row (click)="toggleMenu()">
+      <mat-icon (click)="toggleMenu()">menu</mat-icon>
+    </mat-toolbar-row>
+
+    <mat-toolbar>
+      <mat-toolbar-row (click)="toggleMenu()" routerLink="/product-list">
+        <mat-icon>assignment</mat-icon>
+        <div class="menu-item-distance">All Products</div>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row (click)="toggleMenu()" routerLink="/chart-view">
+        <mat-icon>pie_chart</mat-icon>
+        <div class="menu-item-distance">Chart View</div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="border-color">
+    <mat-toolbar color="primary">
+      <mat-icon (click)="toggleMenu()">menu</mat-icon>
+      <div class="d-flex justify-content-center w-100">
+        <h1>{{ shopeName }}</h1>
+      </div>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

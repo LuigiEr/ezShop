@@ -6,28 +6,26 @@ import { IProduct, IProductData } from '../models/product.interface';
 import { ToastrService } from 'ngx-toastr';
 import { IStore } from '../models/store.interface';
 import { IStatsCategories } from '../models/stats-categories.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+  private apiUrlStore = `${environment.baseApiUrl}/${environment.storeId}`;
 
-  private baseApiUrl = 'https://us-central1-test-b7665.cloudfunctions.net/api/stores';
-  private storeId = 'ijpxNJLM732vm8AeajMR';
-  private apiUrlStore = `${this.baseApiUrl}/${this.storeId}`;
-
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   getStore(): Observable<IStore> {
     return this.http.get<IStore>(`${this.apiUrlStore}`).pipe(
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         throw this.handleError(error, 'Error while retrieving the stores');
       }));
   }
 
   getStatsCategories() {
     return this.http.get<IStatsCategories[]>(`${this.apiUrlStore}/stats/categories`).pipe(
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         throw this.handleError(error, 'Error while retrieving the stats categories');
       }));
   }
@@ -37,7 +35,7 @@ export class StoreService {
       map((response: IProduct[]) => {
         return response
       }),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         throw this.handleError(error, 'Error while retrieving the products');
       }));
   }
@@ -55,7 +53,7 @@ export class StoreService {
         this.toastr.success(`Product created with id: ${idCreated}`);
         return idCreated
       }),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         throw this.handleError(error, 'Error while retrieving the products');
       }));
   }
@@ -63,7 +61,7 @@ export class StoreService {
   deleteProduct(id: string) {
     return this.http.delete(`${this.apiUrlStore}/products/${id}`).pipe(
       tap(() => this.toastr.success(`Product deleted`)),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         throw this.handleError(error, 'Error while deleting the product');
       }));
   }
