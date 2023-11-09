@@ -10,17 +10,16 @@ import { AddProductDialogComponent } from '../add-product-dialog/add-product-dia
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
   products: IProduct[] = [];
   isLoading: boolean = true;
 
   constructor(private readonly storeService: StoreService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getProducts();
   }
 
-  private getAllProducts(): void {
+  private getProducts(): void {
     this.isLoading = true;
     this.storeService.getProducts().subscribe({
       next: (products: IProduct[]) => {
@@ -41,9 +40,9 @@ export class ProductListComponent implements OnInit {
       width: '800px',
     });
 
-    dialogRef.afterClosed().subscribe(idCreated => {
-      if (idCreated && idCreated.trim !== '') {
-        this.getAllProducts();
+    dialogRef.afterClosed().subscribe((idCreated: string) => {
+      if (idCreated && idCreated.trim() !== '') {
+        this.getProducts();
       }
     });
   }
@@ -51,7 +50,7 @@ export class ProductListComponent implements OnInit {
   deleteProduct(product: IProduct): void {
     this.storeService.deleteProduct(product.id).subscribe({
       complete: () => {
-        this.getAllProducts();
+        this.getProducts();
       },
       error: () => {
         this.isLoading = false;
