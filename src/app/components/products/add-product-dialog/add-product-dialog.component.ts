@@ -21,7 +21,6 @@ export class AddProductDialogComponent {
 
   constructor(private dialogRef: MatDialogRef<AddProductDialogComponent>, private readonly storeService: StoreService) {
     this.isLoading = false;
-
     this.singleReviewControl = new FormControl<string>('', { nonNullable: true, validators: Validators.maxLength(this.longFieldMaxLength) });
 
     this.productDataForm = new FormGroup<IProductDataForm>({
@@ -65,7 +64,7 @@ export class AddProductDialogComponent {
     this.productDataForm.controls.reviews?.value?.pop();
   }
 
-  private saveProductData(data: IProductData) {
+  private saveProductData(data: IProductData): void {
     this.isLoading = true;
     this.storeService.saveProductData(data).subscribe({
         next: (idCreated: string) => {

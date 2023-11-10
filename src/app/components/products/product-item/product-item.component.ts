@@ -1,6 +1,6 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IProduct, IProductData } from 'src/app/models/product.interface';
+import { IProduct } from 'src/app/models/product.interface';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { IDialogData } from 'src/app/models/dialog-data.interface';
 
@@ -15,13 +15,13 @@ export class ProductItemComponent implements OnChanges {
   @Input() layoutViewType: string = '';
   @Output() deleteProductEvent = new EventEmitter<IProduct>();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   panelOpenState = false;
   reviewsCount: number = 0;
 
   ngOnChanges() {
-    var count = this.product.data?.reviews?.length;
+    var count = this.product?.data?.reviews?.length;
     this.reviewsCount = count == null ? 0 : count;
   }
 
@@ -37,7 +37,7 @@ export class ProductItemComponent implements OnChanges {
       data: dialogData
     });
 
-    dialogRef.afterClosed().subscribe((isDeleted) => {
+    dialogRef.afterClosed().subscribe((isDeleted: boolean) => {
       if (isDeleted) {
         this.deleteProductEvent.emit(product);
       }

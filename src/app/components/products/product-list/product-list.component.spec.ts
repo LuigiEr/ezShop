@@ -23,9 +23,6 @@ describe('ProductListComponent', () => {
 
   let storeService: jasmine.SpyObj<StoreService>;
   let initalProductList: IProduct[];
-  const mockDialogRef = {
-    open: jasmine.createSpy('open')
-  };
 
   beforeEach(() => {
     storeService = jasmine.createSpyObj('StoreService', ['getProducts', 'deleteProduct']);
@@ -46,8 +43,7 @@ describe('ProductListComponent', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: StoreService, useValue: storeService },
-        { provide: MatDialogRef, useValue: mockDialogRef }
+        { provide: StoreService, useValue: storeService }
       ]
     });
     fixture = TestBed.createComponent(ProductListComponent);
