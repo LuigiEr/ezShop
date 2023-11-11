@@ -67,7 +67,6 @@ export class StoreService {
   }
 
   private handleError(error: HttpErrorResponse, message: string) {
-    console.error(error);
     this.toastr.error(message);
     return message;
   }

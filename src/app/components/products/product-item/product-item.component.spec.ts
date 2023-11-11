@@ -13,6 +13,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { IDialogData } from 'src/app/models/dialog-data.interface';
 import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 describe('ProductItemComponent', () => {
   let component: ProductItemComponent;
@@ -20,7 +21,7 @@ describe('ProductItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductItemComponent, TruncateTextPipe],
+      declarations: [ProductItemComponent, TruncateTextPipe, ConfirmDialogComponent],
       imports: [
         MatDialogModule,
         MatCardModule,
@@ -28,7 +29,8 @@ describe('ProductItemComponent', () => {
         MatListModule,
         MatIconModule,
         BrowserAnimationsModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatButtonToggleModule
       ]
     });
     fixture = TestBed.createComponent(ProductItemComponent);

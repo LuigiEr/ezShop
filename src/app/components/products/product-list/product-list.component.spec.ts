@@ -27,7 +27,7 @@ describe('ProductListComponent', () => {
 
   beforeEach(() => {
     storeService = jasmine.createSpyObj('StoreService', ['getProducts', 'deleteProduct']);
-    initalProductList = [MockProductList[0], MockProductList[1]]
+    initalProductList = [MockProductList[0], MockProductList[1]];
     storeService.getProducts.and.returnValue(of(initalProductList));
 
     TestBed.configureTestingModule({
