@@ -11,6 +11,8 @@ import { MockProductList } from 'src/test-mocks/product.mock';
 import { of } from 'rxjs';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { IDialogData } from 'src/app/models/dialog-data.interface';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('ProductItemComponent', () => {
   let component: ProductItemComponent;
@@ -18,14 +20,15 @@ describe('ProductItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductItemComponent],
+      declarations: [ProductItemComponent, TruncateTextPipe],
       imports: [
         MatDialogModule,
         MatCardModule,
         MatExpansionModule,
         MatListModule,
         MatIconModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatTooltipModule
       ]
     });
     fixture = TestBed.createComponent(ProductItemComponent);

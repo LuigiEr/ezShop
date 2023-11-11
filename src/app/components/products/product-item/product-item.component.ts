@@ -15,12 +15,20 @@ export class ProductItemComponent implements OnChanges {
   @Input() layoutViewType: string = '';
   @Output() deleteProductEvent = new EventEmitter<IProduct>();
 
-  constructor(public dialog: MatDialog) {}
-
   panelOpenState = false;
   reviewsCount: number = 0;
+  normalFieldTruncCount!: number;
+  longFieldTruncCount!: number;
+  description: string = '';
+  employee: string = '';
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnChanges() {
+    this.setFieldsTruncationCount();
+    this.removeEmptyReviewsIfAny(this.product);
+    this.setOptionalField(this.product);
+
     var count = this.product?.data?.reviews?.length;
     this.reviewsCount = count == null ? 0 : count;
   }
@@ -42,5 +50,22 @@ export class ProductItemComponent implements OnChanges {
         this.deleteProductEvent.emit(product);
       }
     });
+  }
+
+  private removeEmptyReviewsIfAny(product: IProduct): void {
+    if(product.data.reviews) {
+      product.data.reviews = product.data.reviews?.map(str => str.trim()).filter(str => str !== "");
+    }
+  }
+
+  private setFieldsTruncationCount(): void {
+    this.normalFieldTruncCount = this.layoutViewType == 'panel_layout' ? 130 : 35;
+    this.longFieldTruncCount = this.layoutViewType == 'panel_layout' ? 1000 : 250;
+  }
+
+  private setOptionalField(product: IProduct): void {
+    this.description = this.product.data.description ? this.product.data.description : '';
+    console.log(this.description);
+    this.employee = this.product.data.employee ? this.product.data.employee : '';
   }
 }

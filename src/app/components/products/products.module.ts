@@ -18,14 +18,17 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductsRoutingModule } from './products-routing.module';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductItemComponent,
     AddProductDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    TruncateTextPipe
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { ProductsRoutingModule } from './products-routing.module';
     MatInputModule,
     ReactiveFormsModule,
     ProductsRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ]
 })
 export class ProductsModule { }

@@ -1,7 +1,11 @@
 :root {
-  --grey-shade-light: rgb(228, 228, 228);
   --primary-color: #3f51b5;
+  --grey-shade-light: rgb(228, 228, 228);
+  --green-pastel: #6dd46d;
+  --delete-color: #f44336;
 }
 
+$primary-color: var(--primary-color);
 $grey-shade-light: var(--grey-shade-light);
-$primary-color: var(--primary-color)
+$green-pastel: var(--green-pastel);
+$delete-color: var(--delete-color);

@@ -89,19 +89,23 @@
           </div>
 
           <div class="col-8">
-            <div><button mat-raised-button (click)="addReview()">Add Review</button></div>
-            <div class="mt-2"><button mat-raised-button (click)="removeReview()">Remove Review</button></div>
+            <div><button [disabled]="!singleReviewControl.valid" mat-raised-button (click)="addReview()">Add Review</button></div>
           </div>
 
         </div>
 
         <div class="row mt-1">
-          <div class="col-4">
+          <div class="col-10">
             Reviews:
             <div *ngIf="productDataForm.controls.reviews?.value?.length === 0">No reviews yet</div>
-            <div class="mt-1" *ngFor="let review of productDataForm.controls.reviews?.value">
+            <div class="mt-1" *ngFor="let review of productDataForm.controls.reviews?.value; let i = index">
               <mat-divider></mat-divider>
-              <div class="mt-1 w-100"> <p>{{ review }}</p></div>
+              <div class="d-flex flex-row">
+                <div class="p-1 mt-1 mr-3">
+                  <mat-icon (click)="deleteReview(i)" class="delete-review-icon">highlight_off</mat-icon>
+                </div>
+                <div class="p-1 mt-1 w-100"> <p>{{ review }}</p></div>
+              </div>
             </div>
           </div>
 
@@ -116,6 +120,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="!isLoading" align="end" class="action-buttons">
-  <button mat-raised-button color="primary" [disabled]="isLoading || !productDataForm.valid" (click)="saveForm()">Save</button>
+  <button mat-raised-button color="primary" [disabled]="isLoading || !productDataForm.valid || !singleReviewControl.valid" (click)="saveForm()">Save</button>
   <button mat-raised-button (click)="onDialogClose()">Close</button>
 </mat-dialog-actions>

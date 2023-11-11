@@ -1,4 +1,10 @@
+@import "../../../../styles/global/color.scss";
+
 .action-buttons {
   padding-top: 3rem;
   padding-right: 3rem;
+}
+
+.delete-review-icon {
+  color: $delete-color;
 }

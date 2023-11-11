@@ -11,12 +11,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { SideNavComponent } from './components/shared/side-nav/side-nav.component';
+//import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    SideNavComponent
+    SideNavComponent,
+    //TruncateTextPipe
   ],
   imports: [
     BrowserModule,

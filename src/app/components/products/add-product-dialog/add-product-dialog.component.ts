@@ -60,8 +60,10 @@ export class AddProductDialogComponent {
     }
   }
 
-  removeReview(): void {
-    this.productDataForm.controls.reviews?.value?.pop();
+  deleteReview(index: number) {
+    if(this.productDataForm.controls.reviews) {
+      this.productDataForm.controls.reviews.value?.splice(index, 1);
+    }
   }
 
   private saveProductData(data: IProductData): void {

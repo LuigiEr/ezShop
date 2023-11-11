@@ -1,3 +1,5 @@
+@import "../../../../styles/global/color.scss";
+
 .all-product {
   margin-right: 1rem;
 }
@@ -14,4 +16,8 @@
 .grid-layout-view {
   width: 30%;
   height: 40%;
+}
+
+.add-button {
+  background-color: $green-pastel;
 }

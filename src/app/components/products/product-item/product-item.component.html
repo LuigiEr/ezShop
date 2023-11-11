@@ -1,10 +1,12 @@
 <mat-card [ngClass]="layoutViewType === 'panel_layout' ? 'panel-layout-view' : 'grid-layout-view'">
 
   <mat-card-header>
-    <mat-card-title class="title-color">{{ product.data.title }}</mat-card-title>
-    <mat-card-subtitle class="mt-3">
-      <div *ngIf="product.data.description && product.data.description !== ''; else noDesc">
-        {{ product.data.description }}
+    <mat-card-title class="title-color" [matTooltip]="product.data.title" [matTooltipDisabled]="product.data.title.length < normalFieldTruncCount">
+      {{ product.data.title | truncateText: normalFieldTruncCount }}
+    </mat-card-title>
+    <mat-card-subtitle class="mt-3" [matTooltip]="description" [matTooltipDisabled]="description.length < longFieldTruncCount">
+      <div *ngIf="description && description !== ''; else noDesc">
+        {{ description | truncateText: longFieldTruncCount}}
       </div>
       <ng-template #noDesc>
         <span class="no-desc-style">No Description</span>
@@ -16,23 +18,24 @@
   <mat-card-content class="mt-3 w-100">
 
     <div class="field-space">
-      <span class="field-style">Id:</span> {{ product.id }}
+      <span class="field-style">Id:</span> {{ product.id | truncateText: normalFieldTruncCount }}
     </div>
-    <div class="field-space">
-      <span class="field-style">Category:</span> {{ product.data.category }}
+    <div class="field-space" [matTooltip]="product.data.category" [matTooltipDisabled]="product.data.category.length < normalFieldTruncCount">
+      <span class="field-style">Category:</span> {{ product.data.category | truncateText: normalFieldTruncCount }}
     </div>
     <div class="field-space">
       <span class="field-style">Price:</span> {{ product.data.price }}
     </div>
-    <div class="field-space">
-      <span class="field-style">Employee:</span> {{ product.data.employee }}
+    <div class="field-space" [matTooltip]="employee" [matTooltipDisabled]="employee.length < normalFieldTruncCount">
+      <span class="field-style">Employee:</span> {{ employee | truncateText: normalFieldTruncCount }}
     </div>
 
     <div class="row d-flex align-items-center test123">
 
       <div class="col-10">
         <mat-accordion>
-          <mat-expansion-panel class="mt-4 w-100" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel class="mt-4 w-100" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            [disabled]="reviewsCount === 0">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Show Reviews ({{ reviewsCount }})
@@ -42,7 +45,9 @@
             <mat-list>
               <div *ngFor="let review of product.data.reviews">
                 <mat-divider></mat-divider>
-                <div class="mt-1 w-100"> <p>{{ review }}</p></div>
+                <div class="mt-1 w-100">
+                  <p>{{ review }}</p>
+                </div>
               </div>
             </mat-list>
           </mat-expansion-panel>
