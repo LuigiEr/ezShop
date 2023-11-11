@@ -9,7 +9,7 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./chart-view.component.scss']
 })
 export class ChartViewComponent implements OnInit {
-  statsCategories!: IStatsCategories[];
+  statsCategories: IStatsCategories[] = [];
   isLoading: boolean = false;
 
   constructor(private readonly storeService: StoreService) {}

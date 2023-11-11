@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductListComponent } from './product-list.component';
 import { StoreService } from 'src/app/services/store.service';
 import { MockProductList } from 'src/test-mocks/product.mock';
-import { of, throwError } from 'rxjs';
+import { Subscription, of, throwError } from 'rxjs';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,6 @@ import { MatInputModule } from '@angular/material/input';
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
-
   let storeService: jasmine.SpyObj<StoreService>;
   let initalProductList: IProduct[];
 
@@ -145,7 +144,7 @@ describe('ProductListComponent', () => {
     });
 
     it('should delete the product with success', () => {
-      var newProductList: IProduct[] = [ MockProductList[0] ];
+      var newProductList: IProduct[] = [MockProductList[0]];
       storeService.getProducts.and.returnValue(of(newProductList));
 
       storeService.deleteProduct.and.returnValue(of({}));
@@ -163,6 +162,50 @@ describe('ProductListComponent', () => {
 
       expect(component.isLoading).toBeFalsy();
       expect(component.products).toEqual(initalProductList);
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
+
+    it('should unsubscribe getProductsSubscription', () => {
+      spyOn(component['getProductsSubscription'], 'unsubscribe');
+
+      component.ngOnDestroy();
+
+      expect(component['getProductsSubscription'].unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe getProductsSubscription', () => {
+      spyOn(component['getProductsSubscription'], 'unsubscribe');
+
+      // No explicit call to ngOnDestroy
+
+      expect(component['getProductsSubscription'].unsubscribe).not.toHaveBeenCalled();
+    });
+
+    it('should unsubscribe deleteProductSubscription', () => {
+      storeService.deleteProduct.and.returnValue(of({}));
+      component.deleteProduct(MockProductList[1]);
+
+      spyOn(component['deleteProductSubscription'], 'unsubscribe');
+
+      component.ngOnDestroy();
+
+      expect(component['deleteProductSubscription'].unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe deleteProductSubscription', () => {
+      storeService.deleteProduct.and.returnValue(of({}));
+      component.deleteProduct(MockProductList[1]);
+
+      spyOn(component['deleteProductSubscription'], 'unsubscribe');
+
+      // No explicit call to ngOnDestroy
+
+      expect(component['deleteProductSubscription'].unsubscribe).toHaveBeenCalled();
     });
   });
 });

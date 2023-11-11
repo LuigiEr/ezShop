@@ -59,4 +59,23 @@ describe('SideNavComponent', () => {
       expect(component.opened).toBeFalsy();
     });
   });
+
+  describe('ngOnDestroy', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+      spyOn(component['getStoreSubscription'], 'unsubscribe');
+    });
+
+    it('should unsubscribe getStoreSubscription', () => {
+      component.ngOnDestroy();
+
+      expect(component['getStoreSubscription'].unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe getStoreSubscription', () => {
+      // No explicit call to ngOnDestroy
+
+      expect(component['getStoreSubscription'].unsubscribe).not.toHaveBeenCalled();
+    });
+  });
 });

@@ -10,20 +10,17 @@ import { IStatsCategories } from 'src/app/models/stats-categories.interface';
 export class PolarAreaChartComponent implements OnChanges {
   @Input() statsCategories!: IStatsCategories[];
 
-  // PolarArea
-  public polarAreaChartLabels!: string[];
+  public polarAreaChartLabels: string[] = [];
   public polarAreaChartDatasets: ChartConfiguration<'polarArea'>['data']['datasets'] = [];
   public polarAreaLegend = true;
   public polarAreaOptions: ChartConfiguration<'polarArea'>['options'] = {
     responsive: true,
   };
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnChanges(): void {
     if(this.statsCategories) {
-
       this.polarAreaChartLabels = this.statsCategories.map(x => x.category);
       var numberOfProducts = this.statsCategories.map(x => x.numberOfProducts);
 
