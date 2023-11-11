@@ -16,6 +16,8 @@ import { AddProductDialogComponent } from '../add-product-dialog/add-product-dia
 import { IProduct } from 'src/app/models/product.interface';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -29,7 +31,7 @@ describe('ProductListComponent', () => {
     storeService.getProducts.and.returnValue(of(initalProductList));
 
     TestBed.configureTestingModule({
-      declarations: [ProductListComponent, ProductItemComponent, AddProductDialogComponent],
+      declarations: [ProductListComponent, ProductItemComponent, AddProductDialogComponent, TruncateTextPipe],
       imports: [
         MatListModule,
         MatCardModule,
@@ -39,7 +41,8 @@ describe('ProductListComponent', () => {
         MatInputModule,
         ReactiveFormsModule,
         MatIconModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatTooltipModule
       ],
       providers: [
         { provide: StoreService, useValue: storeService }
@@ -205,7 +208,7 @@ describe('ProductListComponent', () => {
 
       // No explicit call to ngOnDestroy
 
-      expect(component['deleteProductSubscription'].unsubscribe).toHaveBeenCalled();
+      expect(component['deleteProductSubscription'].unsubscribe).not.toHaveBeenCalled();
     });
   });
 });

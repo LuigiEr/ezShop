@@ -9,7 +9,7 @@ describe('ConfirmDialogComponent', () => {
 
   const mockDialogRef = {
     close: jasmine.createSpy('close')
-};
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({

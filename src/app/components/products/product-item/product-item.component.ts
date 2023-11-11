@@ -27,7 +27,7 @@ export class ProductItemComponent implements OnChanges {
   ngOnChanges() {
     this.setFieldsTruncationCount();
     this.removeEmptyReviewsIfAny(this.product);
-    this.setOptionalField(this.product);
+    this.setOptionalField();
 
     var count = this.product?.data?.reviews?.length;
     this.reviewsCount = count == null ? 0 : count;
@@ -63,9 +63,8 @@ export class ProductItemComponent implements OnChanges {
     this.longFieldTruncCount = this.layoutViewType == 'panel_layout' ? 1000 : 250;
   }
 
-  private setOptionalField(product: IProduct): void {
+  private setOptionalField(): void {
     this.description = this.product.data.description ? this.product.data.description : '';
-    console.log(this.description);
     this.employee = this.product.data.employee ? this.product.data.employee : '';
   }
 }
