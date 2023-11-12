@@ -17,7 +17,6 @@ describe('PolarAreaChartComponent', () => {
     });
     fixture = TestBed.createComponent(PolarAreaChartComponent);
     component = fixture.componentInstance;
-
   });
 
   it('should create', () => {
@@ -32,7 +31,7 @@ describe('PolarAreaChartComponent', () => {
 
       var polarAreaChartLabels = MockStatsCategoriesList.map(x => x.category);
       var numberOfProducts = MockStatsCategoriesList.map(x => x.numberOfProducts);
-      var polarAreaChartDatasets = [ { data: numberOfProducts } ];
+      var polarAreaChartDatasets = [{ data: numberOfProducts }];
 
       expect(component.polarAreaChartLabels).toEqual(polarAreaChartLabels);
       expect(component.polarAreaChartDatasets).toEqual(polarAreaChartDatasets);

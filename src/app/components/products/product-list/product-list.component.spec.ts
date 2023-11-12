@@ -184,8 +184,6 @@ describe('ProductListComponent', () => {
     it('should not unsubscribe getProductsSubscription', () => {
       spyOn(component['getProductsSubscription'], 'unsubscribe');
 
-      // No explicit call to ngOnDestroy
-
       expect(component['getProductsSubscription'].unsubscribe).not.toHaveBeenCalled();
     });
 
@@ -205,8 +203,6 @@ describe('ProductListComponent', () => {
       component.deleteProduct(MockProductList[1]);
 
       spyOn(component['deleteProductSubscription'], 'unsubscribe');
-
-      // No explicit call to ngOnDestroy
 
       expect(component['deleteProductSubscription'].unsubscribe).not.toHaveBeenCalled();
     });

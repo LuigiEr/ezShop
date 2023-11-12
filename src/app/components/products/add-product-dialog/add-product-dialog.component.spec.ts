@@ -117,7 +117,7 @@ describe('AddProductDialogComponent', () => {
       var idCreated = 'test_id';
       var data = MockProductDataList[0];
 
-       // title not provided
+      // title not provided
       component.productDataForm.controls.category.patchValue(data.category);
       component.productDataForm.controls.price.patchValue(data.price);
       component.productDataForm.controls.employee?.patchValue(data.employee ? data.employee : null);
@@ -263,6 +263,39 @@ describe('AddProductDialogComponent', () => {
       component.deleteReview(2);
 
       expect(component.productDataForm.controls.reviews?.value).toBeNull();
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+    it('should unsubscribe saveProductDataSubscription', () => {
+      var idCreated = 'test_id';
+      var data = MockProductDataList[0];
+
+      component.productDataForm.controls.title.patchValue(data.title);
+      component.productDataForm.controls.category.patchValue(data.category);
+      component.productDataForm.controls.price.patchValue(data.price);
+      component.productDataForm.controls.employee?.patchValue(data.employee ? data.employee : null);
+      component.productDataForm.controls.description?.patchValue(data.description ? data.description : null);
+      component.productDataForm.controls.reviews?.patchValue(data.reviews ? data.reviews : []);
+
+      mockDialogRef.close = jasmine.createSpy('close');
+      storeService.saveProductData.and.returnValue(of(idCreated));
+
+      component.saveForm();
+      spyOn(component['saveProductDataSubscription'], 'unsubscribe');
+
+      component.ngOnDestroy();
+
+      expect(component['saveProductDataSubscription'].unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe saveProductDataSubscription', () => {
+      component.productDataForm.controls.price.patchValue(-1);
+      mockDialogRef.close = jasmine.createSpy('');
+
+      component.saveForm();
+
+      expect(component['saveProductDataSubscription']).toBeUndefined();
     });
   });
 });

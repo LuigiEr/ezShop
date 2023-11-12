@@ -73,8 +73,6 @@ describe('SideNavComponent', () => {
     });
 
     it('should not unsubscribe getStoreSubscription', () => {
-      // No explicit call to ngOnDestroy
-
       expect(component['getStoreSubscription'].unsubscribe).not.toHaveBeenCalled();
     });
   });

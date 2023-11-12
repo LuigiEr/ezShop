@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 export class StoreService {
   private apiUrlStore = `${environment.baseApiUrl}/${environment.storeId}`;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   getStore(): Observable<IStore> {
     return this.http.get<IStore>(`${this.apiUrlStore}`).pipe(

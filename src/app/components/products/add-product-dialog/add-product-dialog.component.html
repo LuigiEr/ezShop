@@ -89,7 +89,8 @@
           </div>
 
           <div class="col-8">
-            <div><button [disabled]="!singleReviewControl.valid" mat-raised-button (click)="addReview()">Add Review</button></div>
+            <div><button [disabled]="!singleReviewControl.valid" mat-raised-button (click)="addReview()">Add
+                Review</button></div>
           </div>
 
         </div>
@@ -104,7 +105,9 @@
                 <div class="p-1 mt-1 mr-3">
                   <mat-icon (click)="deleteReview(i)" class="delete-review-icon">highlight_off</mat-icon>
                 </div>
-                <div class="p-1 mt-1 w-100"> <p>{{ review }}</p></div>
+                <div class="p-1 mt-1 w-100">
+                  <p>{{ review }}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -120,6 +123,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="!isLoading" align="end" class="action-buttons">
-  <button mat-raised-button color="primary" [disabled]="isLoading || !productDataForm.valid || !singleReviewControl.valid" (click)="saveForm()">Save</button>
+  <button mat-raised-button color="primary"
+    [disabled]="isLoading || !productDataForm.valid || !singleReviewControl.valid" (click)="saveForm()">Save</button>
   <button mat-raised-button (click)="onDialogClose()">Close</button>
 </mat-dialog-actions>

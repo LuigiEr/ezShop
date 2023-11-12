@@ -50,4 +50,24 @@ describe('ChartViewComponent', () => {
       expect(component.isLoading).toBeFalsy();
     });
   });
+
+  describe('ngOnDestroy', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
+
+    it('should unsubscribe getStatsCategoriesSubscription', () => {
+      spyOn(component['getStatsCategoriesSubscription'], 'unsubscribe');
+
+      component.ngOnDestroy();
+
+      expect(component['getStatsCategoriesSubscription'].unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe getStatsCategoriesSubscription', () => {
+      spyOn(component['getStatsCategoriesSubscription'], 'unsubscribe');
+
+      expect(component['getStatsCategoriesSubscription'].unsubscribe).not.toHaveBeenCalled();
+    });
+  });
 });

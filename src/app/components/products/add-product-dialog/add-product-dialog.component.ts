@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { IProductDataForm } from 'src/app/models/product-data.interface';
 import { IProductData } from 'src/app/models/product.interface';
 import { StoreService } from 'src/app/services/store.service';
@@ -10,7 +11,7 @@ import { StoreService } from 'src/app/services/store.service';
   templateUrl: './add-product-dialog.component.html',
   styleUrls: ['./add-product-dialog.component.scss']
 })
-export class AddProductDialogComponent {
+export class AddProductDialogComponent implements OnDestroy {
 
   productDataForm;
   singleReviewControl;
@@ -18,6 +19,7 @@ export class AddProductDialogComponent {
   normalFieldMaxLength: number = 35;
   longFieldMaxLength: number = 250;
   minPriceValue: number = 0;
+  private saveProductDataSubscription!: Subscription;
 
   constructor(private dialogRef: MatDialogRef<AddProductDialogComponent>, private readonly storeService: StoreService) {
     this.isLoading = false;
@@ -66,9 +68,13 @@ export class AddProductDialogComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    this.saveProductDataSubscription?.unsubscribe();
+  }
+
   private saveProductData(data: IProductData): void {
     this.isLoading = true;
-    this.storeService.saveProductData(data).subscribe({
+    this.saveProductDataSubscription = this.storeService.saveProductData(data).subscribe({
         next: (idCreated: string) => {
           this.isLoading = false;
           this.dialogRef.close(idCreated);
