@@ -42,6 +42,6 @@ mat-card-content {
   font-style: italic;
 }
 
-.mat-mdc-tooltip .mdc-tooltip__surface {
+::ng-deep .mat-mdc-tooltip .mdc-tooltip__surface {
   max-width: 80%;
 }

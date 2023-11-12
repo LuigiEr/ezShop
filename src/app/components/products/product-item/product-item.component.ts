@@ -7,11 +7,9 @@ import { IDialogData } from 'src/app/models/dialog-data.interface';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnChanges {
-
   @Input() product!: IProduct;
   @Input() layoutViewType: string = '';
   @Output() deleteProductEvent = new EventEmitter<IProduct>();
@@ -61,7 +59,7 @@ export class ProductItemComponent implements OnChanges {
 
   private setFieldsTruncationCount(): void {
     this.normalFieldTruncCount = this.layoutViewType == 'panel_layout' ? 130 : 35;
-    this.longFieldTruncCount = this.layoutViewType == 'panel_layout' ? 1000 : 250;
+    this.longFieldTruncCount = this.layoutViewType == 'panel_layout' ? 1000 : 230;
   }
 
   private setOptionalField(): void {
