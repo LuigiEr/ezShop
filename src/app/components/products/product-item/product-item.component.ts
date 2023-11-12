@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IProduct } from 'src/app/models/product.interface';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -7,7 +7,8 @@ import { IDialogData } from 'src/app/models/dialog-data.interface';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductItemComponent implements OnChanges {
 
